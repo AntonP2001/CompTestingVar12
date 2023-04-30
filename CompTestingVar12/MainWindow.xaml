@@ -16,10 +16,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" VerticalAlignment="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Загрузить матрицу из файла"></MenuItem>
-                <MenuItem Header="Создать новую матрицу"/>
+                <MenuItem Header="Загрузить матрицу из файла" Command="{Binding OpenMatrixFileCommand}"></MenuItem>
                 <Separator/>
-                <MenuItem Header="Выход"/>
+                <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"/>
             </MenuItem>
         </Menu>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 25">
@@ -27,19 +26,19 @@
             <TextBox Width="150" Text="{Binding MatrixRank, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button Margin="5 0" Content="Подтвердить" Command="{Binding ResizeMatrixCommand}"/>
         </StackPanel>
-        <DataGrid DockPanel.Dock="Top" HorizontalAlignment="Center" AutoGenerateColumns="True"
+        <DataGrid SelectionUnit="Cell"  DockPanel.Dock="Top" HorizontalAlignment="Center" AutoGenerateColumns="True"
                   HeadersVisibility="None"
                   IsEnabled="true" datagrid2d:ItemsSource.RowsSource="{Binding MatrixValueCollection}" />
-        <StackPanel Width="Auto" Height="60" Orientation="Horizontal" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+        <StackPanel HorizontalAlignment="Center" Width="Auto" Height="60" Orientation="Horizontal" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
             <Label VerticalAlignment="Center" Content="Введите пределы для генератора значений матрицы:"/>
             <StackPanel>
-                <TextBox Width="30" Margin="5" Text="{Binding LowLimit, 
+                <TextBox Width="30" MaxWidth="50" Margin="5" Text="{Binding LowLimit, 
                     UpdateSourceTrigger=PropertyChanged}" >
                     <TextBox.ToolTip>
                         <Label Content="Нижний предел"/>
                     </TextBox.ToolTip>
                 </TextBox>
-                <TextBox Width="30" Margin="5" Text="{Binding HighLimit,
+                <TextBox Width="30" MaxWidth="50" Margin="5" Text="{Binding HighLimit,
                     UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.ToolTip>
                         <Label Content="Верхний предел"/>
@@ -51,5 +50,8 @@
                     Command="{Binding FillMatrixRandomCommand}">
             </Button>
         </StackPanel>
+        <Button DockPanel.Dock="Bottom" Content="Возвести в квадрат локальные минимумы" Height="30" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                Margin="0 15" Command="{Binding SquareLocalMinsCommand}"></Button>
     </DockPanel>
 </Window>
