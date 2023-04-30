@@ -15,5 +15,10 @@
                 <MenuItem Header="Выход"/>
             </MenuItem>
         </Menu>
+        <ItemsControl>
+            <ItemContainerTemplate>
+                <WrapPanel/>
+            </ItemContainerTemplate>
+        </ItemsControl>
     </DockPanel>
 </Window>
