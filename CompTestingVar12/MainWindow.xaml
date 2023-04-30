@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompTestingVar12"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="400">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="З агрузить матрицу из файла"></MenuItem>
+                <MenuItem Header="Создать новую матрицу"/>
+                <Separator/>
+                <MenuItem Header="Выход"/>
+            </MenuItem>
+        </Menu>
+    </DockPanel>
 </Window>
