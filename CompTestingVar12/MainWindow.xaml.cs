@@ -21,43 +21,10 @@ namespace CompTestingVar12
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     /// 
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        #region INPC Realization
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-        #endregion
-
-        #region Свойства
-        private int _matrixRank;
-        public int MatrixRank
-        {
-            get => _matrixRank;
-            set
-            {
-                _matrixRank = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Array[][] _matrix;
-        public Array[][] Matrix
-        {
-            get => Matrix;
-            set
-            {
-                _matrix = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
         public MainWindow()
-        {
+        { 
             InitializeComponent();
         }
     }

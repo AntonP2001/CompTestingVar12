@@ -1,24 +1,55 @@
 ﻿<Window x:Class="CompTestingVar12.MainWindow"
+        xmlns:datagrid2d="http://gu.se/DataGrid2D"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompTestingVar12"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" Height="450" Width="480">
+    <Window.Resources>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top" VerticalAlignment="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="З агрузить матрицу из файла"></MenuItem>
+                <MenuItem Header="Загрузить матрицу из файла"></MenuItem>
                 <MenuItem Header="Создать новую матрицу"/>
                 <Separator/>
                 <MenuItem Header="Выход"/>
             </MenuItem>
         </Menu>
-        <ItemsControl>
-            <ItemContainerTemplate>
-                <WrapPanel/>
-            </ItemContainerTemplate>
-        </ItemsControl>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 25">
+            <Label Content="Введите ранк матрицы:"/>
+            <TextBox Width="150" Text="{Binding MatrixRank, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Margin="5 0" Content="Подтвердить" Command="{Binding ResizeMatrixCommand}"/>
+        </StackPanel>
+        <DataGrid DockPanel.Dock="Top" HorizontalAlignment="Center" AutoGenerateColumns="True"
+                  HeadersVisibility="None"
+                  IsEnabled="true" datagrid2d:ItemsSource.RowsSource="{Binding MatrixValueCollection}" />
+        <StackPanel Width="Auto" Height="60" Orientation="Horizontal" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+            <Label VerticalAlignment="Center" Content="Введите пределы для генератора значений матрицы:"/>
+            <StackPanel>
+                <TextBox Width="30" Margin="5" Text="{Binding LowLimit, 
+                    UpdateSourceTrigger=PropertyChanged}" >
+                    <TextBox.ToolTip>
+                        <Label Content="Нижний предел"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+                <TextBox Width="30" Margin="5" Text="{Binding HighLimit,
+                    UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <Label Content="Верхний предел"/>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <Button VerticalAlignment="Center" Height="30" HorizontalAlignment="Right" 
+                    Content="Сгенерировать" Margin="5"
+                    Command="{Binding FillMatrixRandomCommand}">
+            </Button>
+        </StackPanel>
     </DockPanel>
 </Window>
